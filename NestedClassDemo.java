@@ -9,6 +9,9 @@ class Outer {
         nums = n;
     }
 
+    static int testIntStatic = 10;
+    int testIntPublic = 12;
+
     void Analyze() {
         Inner inObj = new Inner();
 
@@ -17,7 +20,22 @@ class Outer {
         System.out.println("Average: " + inObj.avg());
     }
 
+
+    void testMethodOuterPublic() {
+        Inner inObj = new Inner();
+        
+        inObj.testMethodInnerPublic();
+    }
+
+
     class Inner {
+        int testIntPublicInner = -12;
+    
+        void testMethodInnerPublic() {
+            System.out.println("Outer static from Outer: " + testIntStatic);
+            System.out.println("Outer normal from Outer: " + testIntPublic);
+        }
+
         int min() {
             int m = nums[0];
 
@@ -51,5 +69,7 @@ class NestedClassDemo {
         Outer outObj = new Outer(x);
 
         outObj.Analyze();
+
+        outObj.testMethodOuterPublic();
     }
 }
